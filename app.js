@@ -5,13 +5,13 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
 var campgrounds = [
-    {name: "Salmon Creek", image: "https://www.photosforclass.com/download/pixabay-1845906?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db50a21f4073ed1584d05fb1d4e97e07ee3d21cac104496f0c770aeecb0b8_960.jpg&user=Pexels"},
-    {name: "Granite Hill", image: "https://www.photosforclass.com/download/pixabay-1851092?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db40e28fd033ed1584d05fb1d4e97e07ee3d21cac104496f0c770aeecb0b8_960.jpg&user=Pexels"},
+    {name: "Salmon Creek", image: "http://www.suttonfalls.com/communities/4/004/012/498/244//images/4628314067.jpg"},
+    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
     {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"},
-    {name: "Salmon Creek", image: "https://www.photosforclass.com/download/pixabay-1845906?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db50a21f4073ed1584d05fb1d4e97e07ee3d21cac104496f0c770aeecb0b8_960.jpg&user=Pexels"},
-    {name: "Granite Hill", image: "https://www.photosforclass.com/download/pixabay-1851092?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db40e28fd033ed1584d05fb1d4e97e07ee3d21cac104496f0c770aeecb0b8_960.jpg&user=Pexels"},
+    {name: "Salmon Creek", image: "http://www.suttonfalls.com/communities/4/004/012/498/244//images/4628314067.jpg"},
+    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
     {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"},
-    {name: "Granite Hill", image: "https://www.photosforclass.com/download/pixabay-1851092?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fe83db40e28fd033ed1584d05fb1d4e97e07ee3d21cac104496f0c770aeecb0b8_960.jpg&user=Pexels"},
+    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
     {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"}
     ]
 
