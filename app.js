@@ -1,19 +1,19 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose");
+
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true });
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-var campgrounds = [
-    {name: "Salmon Creek", image: "http://www.suttonfalls.com/communities/4/004/012/498/244//images/4628314067.jpg"},
-    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
-    {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"},
-    {name: "Salmon Creek", image: "http://www.suttonfalls.com/communities/4/004/012/498/244//images/4628314067.jpg"},
-    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
-    {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"},
-    {name: "Granite Hill", image: "http://www.woodallscm.com/wp-content/uploads/2018/04/Sawnee-Campground.jpg"},
-    {name: "Mountain Goat's Site", image: "http://haulihuvila.com/wp-content/uploads/2012/09/hauli-huvila-campgrounds-lg.jpg"}
-    ]
+// SCHEMA SETUP
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String
+})
+
+var Campground = mongoose.model("CampGround", campgroundSchema);
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -22,12 +22,28 @@ app.get("/", function(req, res){
 app.post("/campgrounds", function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
-    campgrounds.push({name: name, image: image});
+    var newCampGround = {name: name, image: image}
+    Campground.create(newCampGround, function (err, campground){
+    if (err){
+        console.log(err);
+    } 
+    else {
+        console.log("Created: ");
+        console.log(campground);
+    }
+});
     res.redirect("/campgrounds");
 });
 
 app.get("/campgrounds", function(req, res){
-    res.render("campgrounds", {campgrounds: campgrounds});
+    Campground.find({}, function (err, allCampgrounds){
+       if (err){
+           console.log (err);
+       } 
+       else {
+           res.render("campgrounds", {campgrounds: allCampgrounds})
+       }
+    });
 });
 
 app.get("/campgrounds/new", function(req, res){
