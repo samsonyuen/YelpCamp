@@ -41,15 +41,14 @@ app.post("/campgrounds", function (req, res) {
     var description = req.body.description;
     var newCampGround = {name: name, image: image, description}
     Campground.create(newCampGround, function (err, campground){
-    if (err){
-        console.log(err);
-    } 
-    else {
-        console.log("Created: ");
-        console.log(campground);
-    }
-});
-    res.redirect("/campgrounds");
+        if (err){
+            console.log(err);
+        } 
+        else {
+            res.redirect("/campgrounds");
+            console.log(campground);
+        }
+    });
 });
 
 //INDEX - Show all campgrounds
@@ -124,30 +123,29 @@ app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
 
 app.get("/register", function(req, res){
     res.render("register");
-})
+});
 
 app.post("/register", function(req, res){
-    var newUser = new User(
-        {username: req.body.username});
-        
+    var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if (err){
             console.log(err);
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function(){
-            res.redirect("/campgrounds");
+           res.redirect("/campgrounds"); 
         });
     });
 });
 
+// show login form
 app.get("/login", function(req, res){
-    res.render("login");
-})
+   res.render("login"); 
+});
 
 app.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/campgrounds", 
+        successRedirect: "/campgrounds",
         failureRedirect: "/login"
     }), function(req, res){
 });
@@ -158,8 +156,8 @@ app.get("/logout", function(req, res) {
 });
 
 function isLoggedIn(req, res, next){
-    if (req.isAuthenticated()){
-        return next;
+    if(req.isAuthenticated()){
+        return next();
     }
     res.redirect("/login");
 }
