@@ -17,7 +17,6 @@ router.post("/", isLoggedIn, function (req, res) {
             console.log(err);
         } 
         else {
-            console.log(newCampGround);
             res.redirect("/campgrounds");
             console.log(campground);
         }
