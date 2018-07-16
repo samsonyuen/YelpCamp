@@ -75,8 +75,8 @@ router.put("/:id", checkCampgroundOwnership, function(req, res){
         else {
             res.redirect("/campgrounds/" + req.params.id);
         }
-    })
-})
+    });
+});
 
 // DESTROY CAMPGROUND ROUTE
 router.delete("/:id", checkCampgroundOwnership, function(req, res){
@@ -87,9 +87,8 @@ router.delete("/:id", checkCampgroundOwnership, function(req, res){
         else {
             res.redirect("/campgrounds");
         }
-        
-    })
-})
+    });
+});
 
 
 function isLoggedIn(req, res, next){
