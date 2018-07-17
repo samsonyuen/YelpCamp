@@ -1,7 +1,7 @@
 var express = require("express");
 var Campground = require("../models/campground");
 // This will automatically require index.js
-var middleware = require("../middleware")
+var middleware = require("../middleware");
 var router = express.Router();
 
 // CREATE - add new campground to DB
